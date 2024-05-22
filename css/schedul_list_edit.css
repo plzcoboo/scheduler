@@ -1,0 +1,53 @@
+main {text-align: center;}
+a {color: #1877F2; text-decoration: none;}
+h3 {color: #606770; font-size: 16px;}
+span{color: #606770;}
+section {margin-top: 10px;}
+button {width: 100%; height: 45px; border-radius: 5px; border: 1px solid #DDDFE2; color: #fff; background-color: #1877F2; font-weight: bold; margin-bottom: 15px; cursor: pointer;}
+
+.logo {margin: auto; width: 350px; margin-top: 150px;}
+.logo span {font-size: 45px; color: #1877F2; font-weight: bold;}
+.logo_img {width: 30px; height: 35px;}
+
+.schedul_list_edit_form {width: 420px; margin: auto; border: 1px solid #DDDFE2; padding: 20px 15px 20px 15px; box-sizing: border-box; border-radius: 10px; margin-top: 50px; box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;}
+
+.join_title {border-bottom:1px solid #DDDFE2; margin-bottom: 20px;}
+.join_title h2 {display: block; margin-top: 0px; margin-bottom: 5px;}
+.join_title em {display: block; margin-bottom: 25px;}
+
+.choose_box {display: flex; justify-content: space-between; text-align: left; margin-bottom: 10px;}
+.choose_box .first_box {width: 31%;}
+.choose_box .mid_box {width: 31%;padding-top: 24px;}
+.choose_box .end_box {width: 31%;}
+.choose_box img {width: 20px; height: 20px;}
+
+.radio_box{border: 1px solid #DDDFE2; padding: 5px; border-radius: 5px; display: flex; justify-content: space-between;}
+.select_box{border: 1px solid #DDDFE2; padding: 5px; border-radius: 5px; height: 33px; width: 100%;}
+
+.posting_date_box input {width: 100%;height: 45px; border-radius: 5px; border:1px solid #DDDFE2; padding-left: 10px; box-sizing: border-box;}
+.schedul_date_box input {width: 100%;height: 45px; border-radius: 5px; border:1px solid #DDDFE2; padding-left: 10px; box-sizing: border-box;}
+.schedul_time_box input {width: 100%;height: 45px; border-radius: 5px; border:1px solid #DDDFE2; padding-left: 10px; box-sizing: border-box;}
+.schedul_text_box textarea {width: 100%;height: 100px; border-radius: 5px; border:1px solid #DDDFE2; padding-left: 10px; box-sizing: border-box; resize: none; padding: 10px;}
+.schedul_text_box {margin-bottom: 20px;}
+
+.title_box {display: flex; align-items: center; height: 30px;}
+.title_box span {font-size: 11px; display: inline-block; margin-top: 3px; margin-left: 5px;}
+
+.content {display: flex; justify-content: space-between; height: 45px;}
+
+.phone_number_box {margin-bottom: 20px;}
+.phone_number_box input {width: 100%; height: 45px; border-radius: 5px; border:1px solid #DDDFE2; padding-left: 10px; box-sizing: border-box;}
+
+.first_section {padding: 0px 0px 25px 0px; border-bottom: 1px solid #DDDFE2;}
+
+.submit_button {margin: auto; width: 150px; height: 45px; border-radius: 5px; border: 1px solid #42B72A; color: #fff; background-color: #42B72A; font-weight: bold; margin-bottom: 10px; cursor: pointer; display: block;}
+.submit_box a{font-size: 12px;}
+
+.posting_date {display: flex; align-items: center; justify-content: space-between;}
+.posting_date input {width: 25%;}
+
+.schedul_date {display: flex; align-items: center; justify-content: space-between;}
+.schedul_date input {width: 25%;}
+
+.schedul_time {display: flex; align-items: center; justify-content: space-between;}
+.schedul_time input {width: 43%;}

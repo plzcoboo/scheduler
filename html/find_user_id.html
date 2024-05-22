@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheduler</title>
+    <link rel="stylesheet" href="../css/find_user_id.css">
+    <link rel="icon" href="../images/logo.jpg">
+</head>
+<body>
+    <main>
+        <h1 class="logo">  
+            <img src="../images/logo.jpg" alt="logo_icon" class="logo_img">
+            <span>Scheduler</span>
+        </h1>
+        <form action="" class="find_user_id_form">
+            <div class="join_title">
+                <h2>아이디 찾기</h2>
+                <em>주어진 양식에 입력해주세요.</em>
+            </div>
+            <section class="first_section">
+                <fieldset class="role_settings">
+                    <legend>권한 부서 선택</legend>
+                    <div class="first_box">
+                        <div>
+                            <img src="../images/authority.jpg"></img>
+                            <span>권한</span>
+                        </div>
+                        <div class="radio_box">
+                            <label>팀장</label>
+                            <input type="radio" name="chk_author" value="팀장" required>
+                        </div>
+                    </div>
+                    <div class="mid_box">
+                        <div class="radio_box">
+                            <label>팀원</label>
+                            <input type="radio" name="chk_author" value="팀원" required>
+                        </div>
+                    </div>
+                    <div class="end_box">
+                        <div>
+                            <img src="../images/department.png"></img>
+                            <span>부서</span>
+                        </div>
+                        <div>
+                          <select class="select_box">
+                              <option value="1">디자인팀</option>
+                              <option value="2">기획팀</option>
+                          </select>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="name_box">
+                    <legend>성함 작성</legend>
+                    <div class="title_box">
+                        <label>성함</label>
+                        <span>(20자 이내 , 영문 , 한글 사용가능)</span>
+                    </div>
+                    <input type="text" name="name" id="name_input" placeholder="이름 입력" pattern="^[a-zA-Z가-힣]+$" required>
+                </fieldset>
+            </section>
+            <section class="second_section">
+                <fieldset class="phone_number_box">
+                    <legend>전화번호 작성</legend>
+                    <div class="title_box">
+                        <label>전화번호</label>
+                        <span>(11자 이내 ,숫자 만 사용가능)</span>
+                    </div>
+                    <input type="number" name="phone_number" id="phone_number_input" placeholder="전화번호 입력" required pattern="[0-9]{11}">
+                </fieldset>
+                <div class="submit_box">
+                    <button type="submit" class="submit_button" onclick="return checkForm()"> 제출</button>
+                    <a href="../index.html">로그인 페이지로 돌아가기</a>
+                </div>
+            </section>
+        </form>
+    </main>
+    <script src="../js/find_user_id.js"></script>
+</body>
+</html>
