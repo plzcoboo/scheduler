@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="kr">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scheduler</title>
-    <link rel="stylesheet" href="../css/schedul_detail.css">
+    <link rel="stylesheet" href="../css/schedule_detail.css">
     <link rel="icon" href="../images/logo.jpg">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <style>
@@ -123,7 +123,7 @@
                     </li>
                 </ul>
                 <div class="submit_box">
-                    <a href="../html/main.html">목록으로 돌아가기</a>
+                    <a href="../JSP/main.jsp">목록으로 돌아가기</a>
                 </div>
             </div>
         </form>
@@ -150,4 +150,3 @@
         }
     </script>
 </body>
-</html>

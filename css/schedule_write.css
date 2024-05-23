@@ -1,11 +1,11 @@
-main {text-align: center;}
+main {text-align: center;position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);}
 a {color: #1877F2; text-decoration: none;}
 h3 {color: #606770; font-size: 16px;}
 span{color: #606770;}
 section {margin-top: 10px;}
 button {width: 100%; height: 45px; border-radius: 5px; border: 1px solid #DDDFE2; color: #fff; background-color: #1877F2; font-weight: bold; margin-bottom: 15px; cursor: pointer;}
 
-.logo {margin: auto; width: 350px; margin-top: 150px;}
+.logo {margin: auto; width: 350px;}
 .logo span {font-size: 45px; color: #1877F2; font-weight: bold;}
 .logo_img {width: 30px; height: 35px;}
 

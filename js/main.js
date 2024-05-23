@@ -57,7 +57,7 @@
                         if (schedules[dateStr].schedul_members) {
                             cellContent += `<span class="schedul_members">${schedules[dateStr].schedul_members}개의 일정</span>`;
                         }
-                        cellContent = `<a href="schedul_detail.html">${cellContent}</a>`;
+                        cellContent = `<a href="schedule_detail.jsp">${cellContent}</a>`;
                     }
                     cell.innerHTML = cellContent;
                     date++;
@@ -75,5 +75,5 @@
 
     function clickWriteEvent(e) {
         e.preventDefault();
-        location.href = "../html/schedul_write.html";
+        location.href = "../html/schedule_write.html";
     }

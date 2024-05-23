@@ -38,12 +38,8 @@ function loginChk(e) {
      checkPwEvent(1)
      return false
      }
-
-     if(id.value && pw.value){
-         e.preventDefault()
-         location.href = mainLink;
-         return true
-     }
+     
+     return true
     }
 
       function linkToJoin(e) {

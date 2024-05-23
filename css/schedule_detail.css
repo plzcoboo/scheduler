@@ -1,4 +1,5 @@
-main {text-align: center; overflow: scroll;overflow-x:hidden; height: 1200px;}
+body {overflow: scroll; overflow-x:hidden;}
+main {text-align: center;height: 1200px; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);}
 a {color: #1877F2; text-decoration: none;}
 h3 {color: #606770; font-size: 16px;margin: 0px;}
 span{color: #606770;}
