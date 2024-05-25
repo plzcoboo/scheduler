@@ -13,7 +13,7 @@
             <img src="../images/logo.jpg" alt="logo_icon" class="logo_img">
             <span>Scheduler</span>
         </h1>
-        <form action="" class="find_user_id_form">
+        <form action="../action/find_user_id.jsp" class="find_user_id_form" method="post">
             <div class="join_title">
                 <h2>아이디 찾기</h2>
                 <em>주어진 양식에 입력해주세요.</em>
@@ -28,13 +28,13 @@
                         </div>
                         <div class="radio_box">
                             <label>팀장</label>
-                            <input type="radio" name="chk_author" value="팀장" required>
+                            <input type="radio" name="chk_author" value="1" required>
                         </div>
                     </div>
                     <div class="mid_box">
                         <div class="radio_box">
                             <label>팀원</label>
-                            <input type="radio" name="chk_author" value="팀원" required>
+                            <input type="radio" name="chk_author" value="2" required>
                         </div>
                     </div>
                     <div class="end_box">
@@ -43,9 +43,9 @@
                             <span>부서</span>
                         </div>
                         <div>
-                          <select class="select_box">
-                              <option value="1">디자인팀</option>
-                              <option value="2">기획팀</option>
+                          <select class="select_box" name="department">
+                              <option value="1">기획팀</option>
+                              <option value="2">디자인팀</option>
                           </select>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                 </fieldset>
                 <div class="submit_box">
                     <button type="submit" class="submit_button" onclick="return checkForm()"> 제출</button>
-                    <a href="../index.html">로그인 페이지로 돌아가기</a>
+                    <a href="../index.jsp">로그인 페이지로 돌아가기</a>
                 </div>
             </section>
         </form>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -32,4 +34,17 @@
     </main>
     <script src="./js/index.js"></script>
 </body>
+<script>
+    // 세션에서 메시지를 읽어와서 alert로 표시
+    const message = "<%= session.getAttribute("message") %>";
+
+    if (message === "success") {
+        alert('가입이 성공적으로 완료되었습니다.');
+    } else if (message === "error") {
+        alert('가입 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+
+    // 메시지 출력 후 세션에서 제거
+    <% session.removeAttribute("message"); %>
+</script>
 </html>

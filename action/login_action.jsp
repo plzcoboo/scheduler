@@ -35,12 +35,12 @@
         e.printStackTrace();
         out.println("<script>alert('데이터베이스 오류가 발생했습니다.');</script>");
         out.println("<script>location.href='login.jsp';</script>");
-        return
+        return;
     } catch (Exception e) {
         e.printStackTrace();
         out.println("<script>alert('오류가 발생했습니다.');</script>");
         out.println("<script>location.href='login.jsp';</script>");
-        return
+        return;
     }
 %>
 

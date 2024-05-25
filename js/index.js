@@ -1,5 +1,5 @@
 let mainLink = "./html/main.html";
-let joinLink = "./html/join.html"
+let joinLink = "./JSP/join.jsp"
 let id = document.querySelector('.id_input');
 let pw = document.querySelector('.pw_input');
 let loginBtn = document.querySelector('.login_button');

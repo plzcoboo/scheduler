@@ -26,7 +26,7 @@ function checkForm() {
         }
     
         // 아이디 필드 유효성 검사
-        if (idInput.value.trim() === "" || isValiedId) {
+        if (idInput.value.trim() === "" || !isValiedId) {
             alert("올바른 아이디를 입력하세요.");
             return false;
         } else if (/\s/.test(idInput.value) || idInput.value.length > 20) {

@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +15,7 @@
             <img src="../images/logo.jpg" alt="logo_icon" class="logo_img">
             <span>Scheduler</span>
         </h1>
-        <form action="../JSP/succes.jsp" class="join_form">
+        <form action="../action/join_action.jsp" method="post" class="join_form">
             <div class="join_title">
                 <h2>새 계정 만들기</h2>
                 <em>빠르고 쉽게 가입할 수 있습니다.</em>
@@ -28,13 +30,13 @@
                       </div>
                       <div class="radio_box">
                           <label>팀장</label>
-                          <input type="radio" name="chk_author" value="팀장" required>
+                          <input type="radio" name="chk_author" value="1" required>
                       </div>
                     </div>
                     <div class="mid_box">
                       <div class="radio_box">
                           <label>팀원</label>
-                          <input type="radio" name="chk_author" value="팀원" required>
+                          <input type="radio" name="chk_author" value="2" required>
                       </div>
                     </div>
                     <div class="end_box">
@@ -43,9 +45,9 @@
                           <span>부서</span>
                       </div>
                       <div>
-                        <select class="select_box">
-                            <option value="1">디자인팀</option>
-                            <option value="2">기획팀</option>
+                        <select name="department" class="select_box" name="department">
+                            <option value="1">기획팀</option>
+                            <option value="2">디자인팀</option>
                         </select>
                       </div>
                     </div>
@@ -65,11 +67,13 @@
                     <div class="title_box">
                         <label>아이디</label>
                         <span>(20자 이내 , 영문 숫자 사용가능)</span>
+                        <span id="checkResult"></span>
                     </div>
                     <div class="content">
                         <input type="text" name="id" id="id_input" placeholder="아이디 입력" pattern="^[a-z0-9_]{0,20}$" required>
-                        <button onclick="checkDuplicate(event)">중복 체크</button>
+                        <button onclick="checkDuplicateId(event)">중복 체크</button>
                     </div>
+                  
                 </fieldset>
                 <fieldset>
                     <legend>비밀번호 작성</legend>
@@ -86,16 +90,22 @@
                     <div class="title_box">
                         <label>전화번호</label>
                         <span>(11자 이내 ,숫자 만 사용가능)</span>
+                        <span id="phoneCheckResult"></span>
                     </div>
-                    <input type="number" name="phone_number" id="phone_number_input" placeholder="전화번호 입력" pattern="[0-9]{11}" required>
+                     <div class="content">
+                        <input type="text" name="phone_number" id="phone_number_input" placeholder="전화번호 입력" pattern="[0-9]{11}" required>
+                        <button onclick="checkDuplicatePhoneNum(event)">중복 체크</button>
+                    </div>
                 </fieldset>
                 <div class="submit_box">
-                    <button type="submit" class="submit_button" onclick="return checkForm()"> 가입하기</button>
-                    <a href="../index.html">이미 가입이 되어있으신가요?</a>
+                    <button type="submit" class="submit_button"> 가입하기</button>
+                    <a href="../index.jsp">이미 가입이 되어있으신가요?</a>
                 </div>
             </section>
         </form>
     </main>
     <script src="../js/join.js"></script>
+    <script src="../js/duplicate_id.js"></script>
+    <script src="../js/duplicate_phone_num.js"></script>
 </body>
 </html>
