@@ -1,50 +1,87 @@
-document.addEventListener("DOMContentLoaded", function() {
-    let schedulEdit = "../html/schedul_list_edit.html";
+function displayScheduleList(data) {
+    const scheduleListElement = document.getElementById('scheduleList');
+    const scheduleCountElement = document.getElementById('scheduleCount');
+    let count = data.length;
+    scheduleCountElement.textContent = count;
 
-    // scheduleData 변수를 사용하여 HTML 요소 생성
-    let scheduleList = document.getElementById("scheduleList");
-    scheduleData.forEach(schedule => {
-        let listItem = document.createElement("li");
-        listItem.classList.add("schedul-list");
+    data.forEach(item => {
+        let listItem = document.createElement('li');
+        listItem.classList.add('schedul-list');
 
-        listItem.innerHTML = `
-            <i class="xi-calendar-check"></i>
-            <div class="content">
-                <span>${schedule.content}</span>
-                <span class="year_month_date_time"><i class="xi-view-day"></i>${schedule.date} ${schedule.time}</span>
-            </div>
-            <button class="show"><i class="xi-profile"></i></button>
-            <div class="block"></div>
-            <div class="hide">
-                <span>${schedule.departmentName}</span>
-                <span>성함:${schedule.userName}</span>
-            </div>
-            <button class="edit">수정</button>
-            <button class="del" type="submit">삭제</button>
-        `;
+        let icon = document.createElement('i');
+        icon.classList.add('xi-calendar-check');
 
-        scheduleList.appendChild(listItem);
-    });
+        let contentDiv = document.createElement('div');
+        contentDiv.classList.add('content');
 
-    // 이벤트 핸들러 등록
-    document.querySelectorAll('.show').forEach(button => {
-        button.addEventListener('click', function(e) {
+        let contentSpan = document.createElement('span');
+        contentSpan.textContent = item.content;
+
+        let dateTimeSpan = document.createElement('span');
+        dateTimeSpan.classList.add('year_month_date_time');
+        dateTimeSpan.innerHTML = `<i class="xi-view-day"></i> ${item.date} ${item.event_time}`;
+
+        contentDiv.appendChild(contentSpan);
+        contentDiv.appendChild(dateTimeSpan);
+
+        let showButton = document.createElement('button');
+        showButton.classList.add('show');
+        showButton.innerHTML = '<i class="xi-profile"></i>';
+        showButton.onclick = function(e) {
             e.preventDefault();
-            let listItem = button.closest('.schedul-list');
-            let showButton = listItem.querySelector('.show');
-            let hideDiv = listItem.querySelector('.hide');
-            let block = listItem.querySelector('.block');
+            showProfileClickEvent(e, showButton);
+        };
 
-            showButton.style.display = 'none';
-            block.style.display = 'block';
-            hideDiv.style.display = 'flex';
-        });
-    });
+        let blockDiv = document.createElement('div');
+        blockDiv.classList.add('block');
 
-    document.querySelectorAll('.edit').forEach(button => {
-        button.addEventListener('click', function(e) {
+        let hideDiv = document.createElement('div');
+        hideDiv.classList.add('hide');
+        hideDiv.innerHTML = `<span>부서: ${item.department_name}</span><span>성함: ${item.user_name}</span>`;
+
+        let editButton = document.createElement('button');
+        editButton.classList.add('edit');
+        editButton.textContent = '수정';
+        editButton.onclick = function(e) {
             e.preventDefault();
-            location.href = schedulEdit;
-        });
+            let scheduleId = item.idx;  // Assuming `item.id` contains the ID of the schedule
+            location.href = `../JSP/schedule_list_edit.jsp?id=${scheduleId}`;
+        };
+
+        let deleteButton = document.createElement('button');
+        deleteButton.classList.add('del');
+        deleteButton.textContent = '삭제';
+        deleteButton.type = 'submit';
+        deleteButton.onclick = function(e) {
+            e.preventDefault();
+            let scheduleId = item.idx;  // Assuming `item.id` contains the ID of the schedule
+            location.href = `../action/schedule_del_action.jsp?id=${scheduleId}`;
+        };
+
+        listItem.appendChild(icon);
+        listItem.appendChild(contentDiv);
+        listItem.appendChild(showButton);
+        listItem.appendChild(blockDiv);
+        listItem.appendChild(hideDiv);
+        listItem.appendChild(editButton);
+        listItem.appendChild(deleteButton);
+
+        scheduleListElement.appendChild(listItem);
     });
-});
+}
+
+function showProfileClickEvent(e, btn) {
+    let listItem = btn.closest('.schedul-list');
+    let hideDiv = listItem.querySelector('.hide');
+    let block = listItem.querySelector('.block');
+
+    btn.style.display = 'none';
+    block.style.display = 'block';
+    hideDiv.style.display = 'flex';
+}
+
+function redirectToDetail(date, role) {
+    location.href = `schedule_detail.jsp?date=${date}&role=${role}`;
+}
+
+displayScheduleList(scheduleData);

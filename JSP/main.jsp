@@ -63,6 +63,19 @@ String scheduleJson = scheduleJsonBuilder.toString();
 connect.close();
 %>
 
+<%
+    if ("팀원".equals(roleName)) {
+%>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let leader = document.querySelectorAll('.schedul_leader');
+        leader.forEach(item => item.classList.add('hide'));
+    });
+    </script>
+<%
+    }
+%>
+
 <% if (currentUser != null) { %> 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,7 +97,7 @@ connect.close();
             </div>
             <div class="show_schedul">
              <% if ("팀장".equals(roleName)) { %>
-                   <button>팀원 일정보기</button>
+                   <button onclick="toogleMembersEvent()">팀원 일정보기</button>
              <% } %>
             </div>
             <select class="monthSelect" onchange="changeMonth()">
@@ -105,6 +118,10 @@ connect.close();
                 <span>부서 : <%= departmentName %> </span>
                 <span>직책 : <%= roleName %></span>
             </div>
+           <%--  <div class="role">
+                <span>팀장 <div class="leader_color"> </div></span>
+                <span>팀원 <div class="member_color"> </div></span>
+            </div> --%>
             <div class="hello">
                 <span><%= userName %>님 반갑습니다.</span>
             </div>
@@ -134,15 +151,22 @@ connect.close();
         </form>
     </main>
     <script src="../js/main.js"></script>
+
     <script>
     console.log(<%= scheduleJson %>)
     let currentYear = <%= currentYear %>;
     let currentMonth = <%= currentMonth %>;
     let scheduleList = <%= scheduleJson %>;
-    
     updateCalendar(currentYear, currentMonth, scheduleList);
-    
     </script>
+    
+    <% if ("팀장".equals(roleName)) { %>
+    <script>
+    let member = document.querySelectorAll('.schedul_members')
+    member.forEach(item => item.classList.add('hide'));
+    </script>
+    <% } %>
+
 </body>
 <% } else { %> 
 <script>

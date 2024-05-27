@@ -16,7 +16,6 @@
     boolean loggedIn = false;
 
     try {
-     
         Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/scheduler", "hyun", "12345");
 
         String sql = "SELECT * FROM users WHERE account=? AND pw=?";

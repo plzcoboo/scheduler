@@ -6,7 +6,7 @@
     String result = "";
 
     Connection conn = null;
-    PreparedStatement pstmt = null;
+    PreparedStatement inputQuery = null;
     ResultSet rs = null;
 
     String dbDriver = "com.mysql.cj.jdbc.Driver";
@@ -19,9 +19,9 @@
         conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
 
         String sql = "SELECT COUNT(*) FROM users WHERE phone_number = ?";
-        pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, phoneNumber);
-        rs = pstmt.executeQuery();
+        inputQuery = conn.prepareStatement(sql);
+        inputQuery.setString(1, phoneNumber);
+        rs = inputQuery.executeQuery();
 
         if (rs.next() && rs.getInt(1) > 0) {
             isDuplicate = true;
@@ -33,7 +33,7 @@
         result = "오류가 발생했습니다.";
     } finally {
         if (rs != null) try { rs.close(); } catch (SQLException e) { e.printStackTrace(); }
-        if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+        if (inputQuery != null) try { inputQuery.close(); } catch (SQLException e) { e.printStackTrace(); }
         if (conn != null) try { conn.close(); } catch (SQLException e) { e.printStackTrace(); }
     }
 

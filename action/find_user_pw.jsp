@@ -18,9 +18,11 @@
         String name = request.getParameter("name");
         String userId = request.getParameter("id");
         String phoneNumber = request.getParameter("phone_number");
+
         // role과 department의 인덱스 값을 변환
         int roleIdx = Integer.parseInt(role);
         int departmentIdx = Integer.parseInt(department);
+
         // 데이터베이스 연결 정보
         String url = "jdbc:mysql://localhost:3306/scheduler";
         String user = "hyun"; // 사용자 이름 입력
@@ -28,6 +30,7 @@
         Connection conn = null;
         PreparedStatement inputQuery = null;
         ResultSet rs = null;
+
         try {
             // JDBC 드라이버 로드
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -49,9 +52,11 @@
             } else {
                 message = "일치하는 사용자 비밀번호가 없습니다.";
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             message = "오류가 발생했습니다. 나중에 다시 시도해주세요.";
+            
         } finally {
             // 리소스 해제
             if (rs != null) try { rs.close(); } catch (SQLException e) {}

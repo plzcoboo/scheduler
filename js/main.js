@@ -1,5 +1,5 @@
 document.getElementById('prevYearBtn').addEventListener('click', () => changeYear(-1));
-    document.getElementById('nextYearBtn').addEventListener('click', () => changeYear(1));
+document.getElementById('nextYearBtn').addEventListener('click', () => changeYear(1));
 
     function changeYear(direction) {
         currentYear += direction;
@@ -14,7 +14,7 @@ document.getElementById('prevYearBtn').addEventListener('click', () => changeYea
 
     function clickWriteEvent(e) {
         e.preventDefault();
-        location.href = "../html/schedule_write.html";
+        location.href = "../JSP/schedule_write.jsp";
     }
 
     function updateCalendar(year, month, scheduleList) {
@@ -36,10 +36,10 @@ document.getElementById('prevYearBtn').addEventListener('click', () => changeYea
                     scheduleList.forEach(item => {
                         if (item.date === fullDate) {
                             if (item.leader_count > 0) {
-                                cellContent += `<span class="schedul_leader" onclick="redirectToDetail('${year}-${('0' + month).slice(-2)}-${('0' + date).slice(-2)}')">${event.leader_count}개의 일정</span>`;
+                                cellContent += `<span class="schedul_leader" onclick="redirectToDetail('${item.date}',1)">${item.leader_count}개의 일정</span>`;
                             }
                             if (item.member_count > 0) {
-                                cellContent += `<span class="schedul_members" onclick="redirectToDetail('${year}-${('0' + month).slice(-2)}-${('0' + date).slice(-2)}')">${event.member_count}개의 일정</span>`;
+                                cellContent += `<span class="schedul_members" onclick="redirectToDetail('${item.date}',2)">${item.member_count}개의 일정</span>`;
                             }
                         }
                     });
@@ -52,6 +52,12 @@ document.getElementById('prevYearBtn').addEventListener('click', () => changeYea
         document.querySelector('.monthSelect').value = month;
     }
 
-    function redirectToDetail(date) {
-        location.href = `schedule_detail.jsp?date=${date}`;
+    function redirectToDetail(date,role) {
+        location.href = `schedule_detail.jsp?date=${date}&role=${role}`;
+    }
+
+    function toogleMembersEvent () {
+        let member = document.querySelectorAll('.schedul_members')
+        member.forEach(item => item.classList.toggle('hide'));
+        console.log('hi')
     }

@@ -1,5 +1,11 @@
-<!DOCTYPE html>
-<html lang="kr">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%  
+HttpSession userAccount = request.getSession();
+String currentUser = (String) userAccount.getAttribute("userId"); 
+%>
+
+<% if (currentUser != null ) { %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +19,7 @@
             <img src="../images/logo.jpg" alt="logo_icon" class="logo_img">
             <span>Scheduler</span>
         </h1>
-        <form id="scheduleForm" class="schedule_write_form">
+            <form id="scheduleForm" class="schedule_write_form" action="../action/schedule_write_action.jsp" method="post">
             <div class="join_title">
                 <h2>일정을 쓰시겠습니까?</h2>
                 <em>주어진 양식에 입력해주세요.</em>
@@ -24,11 +30,12 @@
                         <h3>일정 날짜</h3>
                         <span>(일정 날짜를 입력해주세요.)</span>
                     </div>
-                    <div class="schedul_date">
+                    <%-- <div class="schedul_date">
                         <input type="text" name="year" id="year" pattern="\d{4}" required>년
                         <input type="text" name="month" id="month" pattern="^(0?[1-9]|1[0-2])$" required>월
                         <input type="text" name="day" id="day" pattern="^(0?[1-9]|[12][0-9]|3[01])$" required>일
-                    </div>
+                    </div> --%>
+                    <input type="date" id="date" name="date" value="" pattern="^\d{4}-\d{2}-\d{2}$">
                 </section>
                 <section class="schedul_time_box">
                     <div class="title_box">
@@ -58,4 +65,9 @@
     </main>
     <script src="../js/schedul_write.js"></script>
 </body>
-</html>
+<% } else { %> 
+<script>
+alert('로그인 해주시기 바랍니다.');
+location.href = "../index.html";
+</script>
+<% } %>
