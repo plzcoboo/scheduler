@@ -34,5 +34,5 @@ td span.empty {width: 100%; height: 100%; display: block; background: #f6f6f6;}
 .logout {width: 125px; height: 36px; background: #fff; color: #F67280; font-weight: bold; border: 1px solid #DDDFE2; cursor: pointer; border-radius: 5px; margin-top: 15px;}
 
 .schedul_members {position: absolute; background-color: #F67280; left: 0px; top: 40%; transform: translateY(-50%); font-size: 14px; width: 100%; border-radius: 5px; color: #fff;height: fit-content;text-decoration: none;border: 1px solid #F67280;cursor: pointer;}
-.schedul_leader {position: absolute; background-color: #1877F2; left: 0px; top: 60%; transform: translateY(-50%); font-size: 14px; width: 100%; border-radius: 5px; color: #fff;height: fit-content;text-decoration: none;border: 1px solid #1877F2;cursor: pointer;}
+.schedul_leader {position: absolute; background-color: #1877F2; left: 0px; top: 65%; transform: translateY(-50%); font-size: 14px; width: 100%; border-radius: 5px; color: #fff;height: fit-content;text-decoration: none;border: 1px solid #1877F2;cursor: pointer;}
 

@@ -32,7 +32,7 @@
         int departmentIdx = Integer.parseInt(department);
         
         Connection conn = null;
-        PreparedStatement pstmt = null;
+        PreparedStatement inputQuery = null;
         HttpSession joinSession = request.getSession(); // 세션 객체 선언
 
         try {
@@ -42,16 +42,16 @@
 
             // SQL 쿼리 준비
             String sql = "INSERT INTO users (account, name, pw, phone_number, department_idx, role_idx) VALUES (?, ?, ?, ?, ?, ?)";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, account);
-            pstmt.setString(2, name);
-            pstmt.setString(3, pw);
-            pstmt.setString(4, phoneNumber);
-            pstmt.setInt(5, departmentIdx);
-            pstmt.setInt(6, roleIdx);
+            inputQuery = conn.prepareStatement(sql);
+            inputQuery.setString(1, account);
+            inputQuery.setString(2, name);
+            inputQuery.setString(3, pw);
+            inputQuery.setString(4, phoneNumber);
+            inputQuery.setInt(5, departmentIdx);
+            inputQuery.setInt(6, roleIdx);
 
             // 쿼리 실행
-            int result = pstmt.executeUpdate();
+            int result = inputQuery.executeUpdate();
 
             if (result > 0) {
                 // 가입 성공
@@ -70,7 +70,7 @@
             response.sendRedirect("../index.jsp");
         } finally {
             try {
-                if (pstmt != null) pstmt.close();
+                if (inputQuery != null) inputQuery.close();
                 if (conn != null) conn.close();
             } catch (SQLException se) {
                 se.printStackTrace();

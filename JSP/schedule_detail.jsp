@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<% 
+HttpSession userAccount = request.getSession();
+String currentUser = (String) userAccount.getAttribute("userId"); 
+%>
+
+<% if(currentUser != null) { %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,3 +81,9 @@
         }
     </script>
 </body>
+<% } else { %> 
+<script>
+alert('로그인 해주시기 바랍니다.')
+location.href = "../index.html";
+</script>
+<% } %>

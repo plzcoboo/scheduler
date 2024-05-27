@@ -1,15 +1,15 @@
-    document.getElementById('prevYearBtn').addEventListener('click', () => changeYear(-1));
+document.getElementById('prevYearBtn').addEventListener('click', () => changeYear(-1));
     document.getElementById('nextYearBtn').addEventListener('click', () => changeYear(1));
 
     function changeYear(direction) {
         currentYear += direction;
         currentMonth = 1; 
-        updateCalendar(currentYear, currentMonth);
+        updateCalendar(currentYear, currentMonth, scheduleList);
     }
 
     function changeMonth() {
         currentMonth = parseInt(document.querySelector('.monthSelect').value);
-        updateCalendar(currentYear, currentMonth);
+        updateCalendar(currentYear, currentMonth, scheduleList);
     }
 
     function clickWriteEvent(e) {
@@ -17,7 +17,7 @@
         location.href = "../html/schedule_write.html";
     }
 
-    function updateCalendar(year, month,leaderCount,memberCount) {
+    function updateCalendar(year, month, scheduleList) {
         const calendarBody = document.querySelector('tbody');
         calendarBody.innerHTML = '';
         const daysInMonth = new Date(year, month, 0).getDate();
@@ -32,6 +32,17 @@
                     cell.innerHTML = '<span class="empty"></span>';
                 } else {
                     let cellContent = `<span class="date">${date}</span>`;
+                    let fullDate = `${year}-${('0' + month).slice(-2)}-${('0' + date).slice(-2)}`;
+                    scheduleList.forEach(item => {
+                        if (item.date === fullDate) {
+                            if (item.leader_count > 0) {
+                                cellContent += `<span class="schedul_leader" onclick="redirectToDetail('${year}-${('0' + month).slice(-2)}-${('0' + date).slice(-2)}')">${event.leader_count}개의 일정</span>`;
+                            }
+                            if (item.member_count > 0) {
+                                cellContent += `<span class="schedul_members" onclick="redirectToDetail('${year}-${('0' + month).slice(-2)}-${('0' + date).slice(-2)}')">${event.member_count}개의 일정</span>`;
+                            }
+                        }
+                    });
                     cell.innerHTML = cellContent;
                     date++;
                 }
@@ -41,15 +52,6 @@
         document.querySelector('.monthSelect').value = month;
     }
 
-/* 
-let dateStr = `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
- if (schedules[dateStr]) {
-                        if (schedules[dateStr].schedul_leader) {
-                            cellContent += `<span class="schedul_leader">${schedules[dateStr].schedul_leader}개의 일정</span>`;
-                        }
-                        if (schedules[dateStr].schedul_members) {
-                            cellContent += `<span class="schedul_members">${schedules[dateStr].schedul_members}개의 일정</span>`;
-                        }
-                        cellContent = `<a href="schedul_detail.html">${cellContent}</a>`;
-                    }
-*/
+    function redirectToDetail(date) {
+        location.href = `schedule_detail.jsp?date=${date}`;
+    }

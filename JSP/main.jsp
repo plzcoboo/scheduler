@@ -4,6 +4,7 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.PreparedStatement" %>
+
 <%
 Calendar cal = Calendar.getInstance();
 int currentYear = cal.get(Calendar.YEAR);
@@ -21,7 +22,6 @@ String findProfileSql = " SELECT departments.name AS department_name, users.name
                         " INNER JOIN roles ON users.role_idx = roles.idx " +
                         " WHERE users.account = ? ";
 
-
 PreparedStatement findProfileQuery = connect.prepareStatement(findProfileSql);
 findProfileQuery.setString(1, currentUser);
 ResultSet result = findProfileQuery.executeQuery();
@@ -36,22 +36,31 @@ if (result.next()) {
     roleName = result.getString("role_name");
 }
 
-String membersCntSql = " SELECT COUNT(CASE WHEN users.role_idx = '1' THEN 1 END) AS leader_count, " +
-                       " COUNT(CASE WHEN users.role_idx = '2' THEN 1 END) AS member_count " +
-                       " FROM schedule " +
-                       " JOIN users ON schedule.writer = users.idx " +
-                       " WHERE schedule.date = '2024-05-25' ";
+String scheduleSql = "SELECT date, " +
+                     "SUM(CASE WHEN users.role_idx = 1 THEN 1 ELSE 0 END) AS leader_count, " +
+                     "SUM(CASE WHEN users.role_idx = 2 THEN 1 ELSE 0 END) AS member_count " +
+                     "FROM schedule " +
+                     "JOIN users ON schedule.writer = users.idx " +
+                     "GROUP BY date";
 
-PreparedStatement members = connect.prepareStatement(membersCntSql);
-ResultSet rs = members.executeQuery();
+PreparedStatement scheduleQuery = connect.prepareStatement(scheduleSql);
+ResultSet scheduleResult = scheduleQuery.executeQuery();
 
-int leaderCount = 0;
-int memberCount = 0;
-if (rs.next()) {
-    leaderCount = rs.getInt("leader_count");
-    memberCount = rs.getInt("member_count");
+StringBuilder scheduleJsonBuilder = new StringBuilder("[");
+while (scheduleResult.next()) {
+    if (scheduleJsonBuilder.length() > 1) {
+        scheduleJsonBuilder.append(",");
+    }
+    scheduleJsonBuilder.append("{");
+    scheduleJsonBuilder.append("\"date\":\"").append(scheduleResult.getString("date")).append("\",");
+    scheduleJsonBuilder.append("\"leader_count\":").append(scheduleResult.getInt("leader_count")).append(",");
+    scheduleJsonBuilder.append("\"member_count\":").append(scheduleResult.getInt("member_count"));
+    scheduleJsonBuilder.append("}");
 }
+scheduleJsonBuilder.append("]");
+String scheduleJson = scheduleJsonBuilder.toString();
 
+connect.close();
 %>
 
 <% if (currentUser != null) { %> 
@@ -70,7 +79,7 @@ if (rs.next()) {
         <nav>
             <div class="change_year">
                 <button id="prevYearBtn"><</button>
-                <span class="year">2024</span>
+                <span class="year"><%= currentYear %></span>
                 <button id="nextYearBtn">></button>
             </div>
             <div class="show_schedul">
@@ -126,26 +135,18 @@ if (rs.next()) {
     </main>
     <script src="../js/main.js"></script>
     <script>
+    console.log(<%= scheduleJson %>)
     let currentYear = <%= currentYear %>;
     let currentMonth = <%= currentMonth %>;
-    let leaderCount = <%= leaderCount %>;
-    let memberCount = <%= memberCount %>;
-    updateCalendar(currentYear, currentMonth, leaderCount, memberCount);
+    let scheduleList = <%= scheduleJson %>;
+    
+    updateCalendar(currentYear, currentMonth, scheduleList);
+    
     </script>
 </body>
 <% } else { %> 
 <script>
 alert('로그인 해주시기 바랍니다.')
-location.href = "../index.html";
+location.href = "../index.jsp";
 </script>
 <% } %>
-
-
-<%-- 
-SELECT 
-    COUNT(CASE WHEN users.role_idx = '1' THEN 1 END) AS leader_count,
-    COUNT(CASE WHEN users.role_idx = '2' THEN 1 END) AS member_count
-FROM schedule
-JOIN users ON schedule.writer = users.idx
-WHERE schedule.date = '2024-05-25';
- --%>
